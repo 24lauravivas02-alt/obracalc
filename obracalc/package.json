@@ -1,0 +1,29 @@
+{
+  "name": "calculadora-materiales-construccion",
+  "version": "1.0.0",
+  "description": "Calculadora de materiales de construccion con roles y perfiles de inicio de sesion (Backend Node.js + Express + SQLite y Frontend HTML/CSS/JS).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test tests/api.test.js"
+  },
+  "keywords": [
+    "calculadora",
+    "construccion",
+    "crud",
+    "express",
+    "sqlite"
+  ],
+  "author": "Equipo Interfaces I - Escuela Tecnologica de Neiva",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.22.3",
+    "jsonwebtoken": "^9.0.3",
+    "sql.js": "^1.15.1"
+  }
+}

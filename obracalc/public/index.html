@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>ObraCalc</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="app-title">ObraCalc</div>
+
+    <div class="app-subtitle">
+        Bienvenido a ObraCalc una calculadora donde podras hacer los calculos que necesites para la construcción de tu proyecto
+    </div>
+
+    <div class="nav-strip" id="navStrip"></div>
+
+    <div class="phone">
+
+        <div class="screen active" data-screen="welcome" id="screen-welcome">
+
+            <div class="content">
+
+                <div class="logo-circle">
+                    <img src="logo_obraCalc.png" alt="Logo ObraCalc" class="logo-img">
+                </div>
+
+                <div class="welcome-panel">
+
+                    <button class="pill-btn" onclick="showScreen('login')">
+                        👤 Iniciar Sesión
+                    </button>
+
+                    <button class="pill-btn" onclick="showScreen('register')">
+                        👤 Registrarse
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="screen" data-screen="register" id="screen-register">
+
+            <div class="back-row">
+                <button class="icon-btn" onclick="showScreen('welcome')">←</button>
+            </div>
+
+            <div class="content form-content">
+
+                <div class="avatar-circle">👤</div>
+
+                <h2 class="form-title">Crear Cuenta</h2>
+
+                <p class="muted-text">
+                    Completa los datos para registrarte
+                </p>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">👤</span>
+                    <input type="text" placeholder="Nombre del usuario">
+                </div>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">🔒</span>
+                    <input type="password" placeholder="Contraseña">
+                    <span class="trail-icon">👁‍🗨</span>
+                </div>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">🔒</span>
+                    <input type="password" placeholder="Confirmar Contraseña">
+                    <span class="trail-icon">👁‍🗨</span>
+                </div>
+
+                <button class="pill-btn" onclick="showScreen('menu')">
+                    Crear Cuenta
+                </button>
+
+                <p class="muted-text">
+                    ¿Ya tienes una cuenta?
+                    <span class="link" onclick="showScreen('login')">
+                        Inicia sesión
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="login" id="screen-login">
+
+            <div class="back-row">
+                <button class="icon-btn" onclick="showScreen('welcome')">←</button>
+            </div>
+
+            <div class="content form-content">
+
+                <div class="avatar-circle login-avatar">🔒</div>
+
+                <h2 class="form-title">Iniciar Sesión</h2>
+
+                <p class="muted-text">
+                    Ingresa tus credenciales
+                </p>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">👤</span>
+                    <input type="text" placeholder="Nombre del usuario">
+                </div>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">🔒</span>
+                    <input type="password" placeholder="Contraseña">
+                    <span class="trail-icon">👁‍🗨</span>
+                </div>
+
+                <div class="login-options">
+
+                    <label>
+                        <input type="checkbox">
+                        Recordarme
+                    </label>
+
+                    <span
+                        class="link forgot-link"
+                        onclick="showScreen('recuperar')">
+                        ¿Olvidaste tu contraseña?
+                    </span>
+
+                </div>
+
+                <button class="pill-btn" onclick="showScreen('menu')">
+                    Iniciar Sesión
+                </button>
+
+                <p class="muted-text">
+                    ¿No tienes una cuenta?
+                    <span class="link" onclick="showScreen('register')">
+                        Regístrate
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="screen" data-screen="recuperar" id="screen-recuperar">
+
+            <div class="back-row">
+                <button class="icon-btn" onclick="showScreen('login')">
+                    ←
+                </button>
+            </div>
+
+            <div class="content recuperar-content">
+
+                <div class="avatar-circle recuperar-avatar">
+                    🔒
+                </div>
+
+                <h2 class="recuperar-title">
+                    Cambiar tu contraseña
+                </h2>
+
+                <p class="muted-text">
+                    Ingresa tu nueva contraseña
+                </p>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">🔒</span>
+
+                    <input
+                        type="password"
+                        id="nuevaContrasena"
+                        placeholder="Nueva contraseña">
+
+                    <span class="trail-icon">👁‍🗨</span>
+                </div>
+
+                <div class="pill-input-wrap">
+                    <span class="lead-icon">🔒</span>
+
+                    <input
+                        type="password"
+                        id="confirmarContrasena"
+                        placeholder="Confirmar contraseña">
+
+                    <span class="trail-icon">👁‍🗨</span>
+                </div>
+
+                <button
+                    class="pill-btn recuperar-btn"
+                    onclick="cambiarContrasena()">
+
+                    SIGUIENTE
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="menu" id="screen-menu">
+
+            <div class="topbar">
+
+                <button class="icon-btn">☰</button>
+
+                <h1>Construl Calc</h1>
+
+                <button class="icon-btn avatar">👤</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="menu-heading">
+                    selecciona una opción
+                </div>
+
+                <div class="menu-option" onclick="showScreen('muro')">
+                    <span class="mo-icon">🧱</span>
+                    <span class="mo-text">1. calcular muro de ladrillos</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('viga')">
+                    <span class="mo-icon">🔩</span>
+                    <span class="mo-text">2. calcular viga de hormigón</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('columna')">
+                    <span class="mo-icon">🏛️</span>
+                    <span class="mo-text">3. calcular columnas</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('contrapiso')">
+                    <span class="mo-icon">🚧</span>
+                    <span class="mo-text">4. calcular contrapisos</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('techo')">
+                    <span class="mo-icon">🗼</span>
+                    <span class="mo-text">5. calcular techo</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('pisos')">
+                    <span class="mo-icon">🟫</span>
+                    <span class="mo-text">6. calcular pisos</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="menu-option" onclick="showScreen('pintura')">
+                    <span class="mo-icon">🖌️</span>
+                    <span class="mo-text">7. calcular pintura</span>
+                    <span class="mo-arrow">➜</span>
+                </div>
+
+                <div class="exit-pill" onclick="showScreen('welcome')">
+                    👋salir
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="muro" id="screen-muro">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Muro de ladrillos</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. selecciona el espesor del muro
+                </div>
+
+                <div class="toggle-row">
+
+                    <button
+                        class="toggle-pill selected"
+                        id="esp20"
+                        onclick="selectEspesor(20)">
+                        20 cm
+                    </button>
+
+                    <button
+                        class="toggle-pill"
+                        id="esp30"
+                        onclick="selectEspesor(30)">
+                        30 cm
+                    </button>
+
+                </div>
+
+                <div class="step-label">
+                    2. Ingresa las medidas
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="muroLargo"
+                            type="number"
+                            placeholder="Ej 5.00">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>alto (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="muroAlto"
+                            type="number"
+                            placeholder="Ej 2.80">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcMuro()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="muroResult" style="display:none;">
+
+                    <div class="rb-title">
+                        Resultado
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 Superficie de muro</span>
+                            <span id="muroSup"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🏗️ Cemento</span>
+                            <span id="muroCem"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🟤 Arena</span>
+                            <span id="muroAre"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 Ladrillos</span>
+                            <span id="muroLad"></span>
+                        </div>
+
+                        <div class="note-pill" id="muroNote"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="viga" id="screen-viga">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Viga de hormigón</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. ingresa el largo de la viga
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="vigaLargo"
+                            type="number"
+                            placeholder="Ej: 6.00">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcViga()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="vigaResult" style="display:none;">
+
+                    <div class="rb-title">
+                        materiales necesarios
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">🏗️ Cemento</span>
+                            <span id="vigaCem"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🟤 arena</span>
+                            <span id="vigaAre"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 piedra</span>
+                            <span id="vigaPie"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 8</span>
+                            <span id="vigaH8"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 4</span>
+                            <span id="vigaH4"></span>
+                        </div>
+
+                        <div class="note-pill">
+                            Cálculo por metro lineal de viga
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="columna" id="screen-columna">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Columna de hormigón</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. ingresa el largo de la columna
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="colLargo"
+                            type="number"
+                            placeholder="Ej: 3.00">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcColumna()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="colResult" style="display:none;">
+
+                    <div class="rb-title">
+                        materiales necesarios
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">🏗️ Cemento</span>
+                            <span id="colCem"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🟤 arena</span>
+                            <span id="colAre"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 piedra</span>
+                            <span id="colPie"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 10</span>
+                            <span id="colH10"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 4</span>
+                            <span id="colH4"></span>
+                        </div>
+
+                        <div class="note-pill">
+                            Cálculo por metro lineal de columna
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="screen" data-screen="contrapiso" id="screen-contrapiso">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Contrapisos</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. ingresa las medidas del contrapiso
+                </div>
+
+                <div class="field-row">
+
+                    <label>Espesor (cm)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="cpEspesor"
+                            type="number"
+                            placeholder="Ej: 8">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>ancho (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="cpAncho"
+                            type="number"
+                            placeholder="Ej 4.00">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="cpLargo"
+                            type="number"
+                            placeholder="Ej: 4.50">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcContrapiso()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="cpResult" style="display:none;">
+
+                    <div class="rb-title">
+                        Resultado
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">🏗️ Cemento</span>
+                            <span id="cpCem"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🟤 Arena</span>
+                            <span id="cpAre"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 piedra</span>
+                            <span id="cpPie"></span>
+                        </div>
+
+                        <div class="note-pill">
+                            Cálculo por metro cúbico de contrapiso
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="screen" data-screen="techo" id="screen-techo">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Techo</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. ingresa las medidas del techo
+                </div>
+
+                <div class="field-row">
+
+                    <label>Espesor (cm)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="techoEspesor"
+                            type="number"
+                            placeholder="Ej: 10">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>ancho (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="techoAncho"
+                            type="number"
+                            placeholder="Ej 5.00">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="techoLargo"
+                            type="number"
+                            placeholder="Ej: 6.00">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcTecho()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="techoResult" style="display:none;">
+
+                    <div class="rb-title">
+                        Resultado
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">🏗️ Cemento</span>
+                            <span id="techoCem"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🟤 Arena</span>
+                            <span id="techoAre"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🧱 piedra</span>
+                            <span id="techoPie"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 8</span>
+                            <span id="techoH8"></span>
+                        </div>
+
+                        <div class="result-row">
+                            <span class="rr-label">🔩 hierro de 6</span>
+                            <span id="techoH6"></span>
+                        </div>
+
+                        <div class="note-pill">
+                            Cálculo por metro cuadrado del techo
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="pisos" id="screen-pisos">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Pisos</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label">
+                    1. ingresa las medidas del paño del piso
+                </div>
+
+                <div class="field-row">
+
+                    <label>Ancho (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="pisoAncho"
+                            type="number"
+                            placeholder="Ej: 4.00">
+                    </div>
+
+                </div>
+
+                <div class="field-row">
+
+                    <label>largo (m)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="pisoLargo"
+                            type="number"
+                            placeholder="Ej: 5.00">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcPisos()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="pisoResult" style="display:none;">
+
+                    <div class="rb-title">
+                        Resultado
+                    </div>
+
+                    <div class="rb-body">
+
+                        <div class="result-row">
+                            <span class="rr-label">
+                                superficie sin recortes
+                            </span>
+
+                            <span id="pisoSup"></span>
+                        </div>
+
+                        <div class="result-row">
+
+                            <span class="rr-label">
+                                10% adicional por recortes
+                            </span>
+
+                            <span id="pisoExtra"></span>
+
+                        </div>
+
+                        <div class="result-row total" id="pisoTotal"></div>
+
+                        <div class="note-pill">
+                            Se añade 10% extra por recortes
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="screen" data-screen="pintura" id="screen-pintura">
+
+            <div class="topbar">
+
+                <button class="icon-btn" onclick="showScreen('menu')">←</button>
+
+                <h1>Pintura</h1>
+
+                <button class="icon-btn" onclick="showScreen('menu')">🏠</button>
+
+            </div>
+
+            <div class="content">
+
+                <div class="step-label" style="text-align:center;">
+                    Ingresa la superficie del muro
+                </div>
+
+                <div class="field-row">
+
+                    <label>superficie (m²)</label>
+
+                    <div class="pill-input-wrap">
+                        <input
+                            id="pinturaSup"
+                            type="number"
+                            placeholder="Ej: 36.00">
+                    </div>
+
+                </div>
+
+                <button class="calc-btn" onclick="calcPintura()">
+                    CALCULAR 📋
+                </button>
+
+                <div class="result-box" id="pinturaResult" style="display:none;">
+
+                    <div class="rb-title">
+                        Resultado
+                    </div>
+
+                    <div class="rb-body" style="align-items:center; text-align:center;">
+
+                        <div style="font-size:2.6rem;">
+                            🎨🎨🎨
+                        </div>
+
+                        <div class="result-row" style="justify-content:center; gap:10px;">
+
+                            <span class="rr-label">
+                                pintura necesaria
+                            </span>
+
+                            <span
+                                id="pinturaLitros"
+                                style="color:var(--brown-dark); font-weight:700;">
+                            </span>
+
+                        </div>
+
+                        <div class="note-pill">
+                            Rinde 6 m² por litro de pintura
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="conexion.js"></script>
+
+</body>
+</html>
